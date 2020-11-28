@@ -2,7 +2,7 @@
     <fieldset ngModelGroup="name">
         <div class="form-group">
             <label for="">First Name</label>
-            <input type="text" class="form-control" name="fname" [(ngModel)]="model.firstName" required minlength="3" #fname=ngModel>
+            <input type="text" class="form-control" name="fname" [(ngModel)]="model.firstName" required minlength="3" #fname=ngModel [ngClass]="{'is-invalid': fname.invalid && (fname.dirty || fname.touched)}">
             <div class="form-control-feedback" *ngIf="fname.errors && (fname.dirty || fname.touched)">
                 <p *ngIf="fname.errors.required">Firstname is required</p>
                 <p *ngIf="fname.errors.minlength">Name should be more than 3 characters</p>
@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
             <label for="">Last Name</label>
-            <input type="text" class="form-control" name="lname" [(ngModel)]="model.lastName" required minlength="3" #lname=ngModel>
+            <input type="text" class="form-control" name="lname" [(ngModel)]="model.lastName" required minlength="3" #lname=ngModel [ngClass]="{'is-invalid': lname.invalid && (lname.dirty || lname.touched)}">
 
             <div class="form-control-feedback" *ngIf="lname.errors && (lname.dirty || lname.touched)">
                 <p *ngIf="lname.errors.required">Lastname is required</p>
@@ -19,12 +19,9 @@
         </div>
     </fieldset>
 
-    <div class="form-group" [ngClass]="{
-        'has-danger': email.invalid && (email.dirty || email.touched),
-        'has-success': email.valid && (email.dirty ||  email.touched)
-    }">
+    <div class="form-group">
         <label for="">Email</label>
-        <input type="email" class="form-control" name="email" [(ngModel)]="model.email" required pattern="[^ @]*@[^ @]*" #email=ngModel>
+        <input type="email" class="form-control" name="email" [(ngModel)]="model.email" required pattern="[^ @]*@[^ @]*" #email=ngModel [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched)}">
 
         <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
             <p *ngIf="email.errors.required">Email is required</p>
@@ -33,7 +30,7 @@
     </div>
     <div class="form-group">
         <label for="">Password</label>
-        <input type="password" class="form-control" name="password" required minlength="8" [(ngModel)]="model.password" #password=ngModel>
+        <input type="password" class="form-control" name="password" required minlength="8" [(ngModel)]="model.password" #password=ngModel [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched)}">
 
         <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
             <p *ngIf="password.errors.required">Password is required</p>
